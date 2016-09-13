@@ -1,4 +1,6 @@
-public class CD {
+
+
+public class CD implements Comparable<CD>{
   private String mCDName;
   private String mBandName;
   private String mYear;
@@ -21,4 +23,7 @@ public class CD {
     return mYear;
   }
 
+  public int compareTo(CD cd2){
+    return getCDName().compareTo(cd2.getCDName());
+  }
 }

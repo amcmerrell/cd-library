@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
+import java.util.Collections;
 
 public class App {
   public static void main(String[] args) {
@@ -27,9 +28,15 @@ public class App {
 
       CD userCD = new CD(request.queryParams("cd-name"), request.queryParams("band-name"), request.queryParams("year"));
       cdsArray.add(userCD);
+      if(cdsArray.size()>1){
+        Collections.sort(cdsArray);
+      }
       model.put("cds", request.session().attribute("cds"));
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+
+
   }
 }
